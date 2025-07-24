@@ -65,6 +65,26 @@ export type SectionCourseDetails = SectionBase & {
     values: CourseDetailsType[];
 };
 
+export type Media = {
+    name: string;
+    resource_type: string;
+    resource_value: string;
+    thumbnail_url?: string;
+};
+
+export type CtaText = {
+    name: string;
+    value: string;
+};
+
+export type Checklist = {
+    color: string;
+    icon: string;
+    id: string;
+    list_page_visibility: boolean;
+    text: string;
+};
+
 // export type Sections = {
 //     type: string;
 //     name: string;
