@@ -85,16 +85,65 @@ export type Checklist = {
     text: string;
 };
 
-// export type Sections = {
-//     type: string;
-//     name: string;
-//     description: string;
-//     bg_color: string;
-//     order_idx: number;
-//     values:
-//         | CourseInstructor[]
-//         | CourseLayoutItem[]
-//         | CoursePointer[]
-//         | CourseExclusiveFeature[]
-//         | CourseDetails[];
-// };
+export interface OldInfo {
+    cat_id: number;
+    course_id: number;
+    platform: string;
+    skills_cat_id: number;
+    slug: string;
+}
+
+export interface SEO {
+    defaultMeta: string[];
+    description: string;
+    keywords: string[];
+    schema: string[];
+    title: string;
+}
+
+export type Section =
+    | SectionCourseLayout
+    | SectionInstructor
+    | SectionPointers
+    | SectionExclusiveFeatures
+    | SectionCourseDetails;
+
+export interface CourseData {
+    slug: string;
+    id: number;
+    title: string;
+    description: string;
+    platform: string;
+    type: string;
+    modality: string;
+    old_info: OldInfo;
+    start_at: string;
+    media: Media[];
+    checklist: Checklist[];
+    seo: SEO;
+    cta_text: CtaText;
+    sections: Section[];
+    is_cohort_based_course: boolean;
+    secondary_cta_group: unknown[];
+    delivery_method: string;
+}
+
+export interface SeoMeta {
+    content: string;
+    type: string;
+    value: string;
+}
+
+export interface SeoSchema {
+    meta_name: string;
+    meta_value: string;
+    type: string;
+}
+
+export interface SeoData {
+    defaultMeta: SeoMeta[];
+    description: string;
+    keywords: string[];
+    schema: SeoSchema[];
+    title: string;
+}

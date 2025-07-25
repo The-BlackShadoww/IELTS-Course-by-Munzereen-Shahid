@@ -49,10 +49,10 @@ const SideBar = ({ media, cta, checklist }: SideBarProps) => {
                                     height="315"
                                     src={`https://www.youtube.com/embed/${selectedMedia.resource_value}`}
                                     title={selectedMedia.name}
-                                    frameborder="0"
+                                    frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin"
-                                    allowfullscreen
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
                                     className="size-full object-contain rounded-2xl"
                                 ></iframe>
                             </div>
@@ -61,7 +61,7 @@ const SideBar = ({ media, cta, checklist }: SideBarProps) => {
                     <div className="flex gap-3 overflow-x-scroll pb-2">
                         {media.map((item: Media, index) => (
                             <div
-                                key={item.name}
+                                key={index}
                                 className={cn("shrink-0 cursor-pointer")}
                                 onClick={() => setSelectedMedia(item)}
                             >
@@ -100,7 +100,9 @@ const SideBar = ({ media, cta, checklist }: SideBarProps) => {
                     </div>
 
                     {/* Price */}
-                    <h2 className="inline-block text-2xl font-semibold">৳1000 </h2>
+                    <h2 className="inline-block text-2xl font-semibold">
+                        ৳1000{" "}
+                    </h2>
 
                     {/* CTA */}
                     <div>
