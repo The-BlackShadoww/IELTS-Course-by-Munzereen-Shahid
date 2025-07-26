@@ -8,24 +8,20 @@ import SideBar from "@/components/sections/home/SideBar";
 import Instructor from "@/components/sections/home/Instructor";
 import {
     CourseData,
+    DefaultMeta,
     SectionCourseDetails,
     SectionCourseLayout,
     SectionExclusiveFeatures,
     SectionInstructor,
     SectionPointers,
-    SeoMeta,
     SeoSchema,
 } from "@/types";
-import Seo from "@/components/Seo";
 import type { Metadata } from "next";
-import Head from "next/head";
 
-interface DefaultMeta {
-    type: string;
-    value: string;
-    content: string;
-}
+//! ISR - Time based
+export const revalidate = 3600;
 
+//! Metadata
 export async function generateMetadata(): Promise<Metadata> {
     const language = await getServerLanguage();
     const response = await getCourseData(language);
@@ -112,24 +108,8 @@ export default async function Home() {
 
     return (
         <>
-            {/* <Head>
-                {seo?.schema?.map((item: SeoSchema, index: number) => {
-                    if (item.type === "ld-json" && item.meta_value) {
-                        return (
-                            <script
-                                key={index}
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{
-                                    __html: item.meta_value,
-                                }}
-                            />
-                        );
-                    }
-                    return null;
-                })}
-            </Head> */}
-
             <main>
+                {/* Schema */}
                 <>
                     {seo?.schema?.map((item: SeoSchema, index: number) => {
                         if (item.type === "ld-json") {
@@ -146,6 +126,8 @@ export default async function Home() {
                         return null;
                     })}
                 </>
+
+                {/* Content */}
                 <section className="">
                     <div className="wrapper relative flex gap-8 border">
                         <div className="max-w-[820px] w-full">
@@ -180,86 +162,3 @@ export default async function Home() {
         </>
     );
 }
-
-//! without seo
-// import { getCourseData } from "@/lib/getCourseData";
-// import { getServerLanguage } from "@/lib/language";
-// import CourseLayout from "@/components/sections/home/CourseLayout";
-// import LearningFromCourse from "@/components/sections/home/LearningFromCourse";
-// import ExclusiveFeatures from "@/components/sections/home/ExclusiveFeatures";
-// import CourseDetails from "@/components/sections/home/CourseDetails";
-// import SideBar from "@/components/sections/home/SideBar";
-// import Instructor from "@/components/sections/home/Instructor";
-// import {
-//     CourseData,
-//     SectionCourseDetails,
-//     SectionCourseLayout,
-//     SectionExclusiveFeatures,
-//     SectionInstructor,
-//     SectionPointers,
-// } from "@/types";
-
-// export default async function Home() {
-//     const language = await getServerLanguage();
-
-//     const response = await getCourseData(language);
-//     const courseData = response?.data;
-//     console.log(courseData.seo);
-
-//     const instructor = courseData?.sections?.find(
-//         (section: CourseData) => section.type === "instructors"
-//     ) as SectionInstructor | undefined;
-
-//     const courseLayout = courseData?.sections?.find(
-//         (section: CourseData) => section.type === "features"
-//     ) as SectionCourseLayout | undefined;
-
-//     const pointers = courseData?.sections?.find(
-//         (section: CourseData) => section.type === "pointers"
-//     ) as SectionPointers | undefined;
-
-//     const exclusiveFeatures = courseData?.sections?.find(
-//         (section: CourseData) => section.type === "feature_explanations"
-//     ) as SectionExclusiveFeatures | undefined;
-
-//     const courseDetails = courseData?.sections?.find(
-//         (section: CourseData) => section.type === "about"
-//     ) as SectionCourseDetails | undefined;
-
-//     const media = courseData?.media;
-//     const cta = courseData?.cta_text;
-//     const checklist = courseData?.checklist || [];
-
-//     return (
-//         <main>
-//             <section className="">
-//                 <div className="wrapper relative flex gap-8 border">
-//                     <div className="max-w-[820px] w-full">
-//                         <h1>{courseData?.title}</h1>
-//                         <div
-//                             className="tenms__description"
-//                             dangerouslySetInnerHTML={{
-//                                 __html: courseData?.description,
-//                             }}
-//                         />
-//                         {instructor && <Instructor {...instructor} />}
-//                         {courseLayout && <CourseLayout {...courseLayout} />}
-//                         {pointers && <LearningFromCourse {...pointers} />}
-//                         {exclusiveFeatures && (
-//                             <ExclusiveFeatures {...exclusiveFeatures} />
-//                         )}
-//                         {courseDetails && <CourseDetails {...courseDetails} />}
-//                     </div>
-
-//                     {media && cta && checklist.length > 0 && (
-//                         <SideBar
-//                             media={media}
-//                             cta={cta}
-//                             checklist={checklist}
-//                         />
-//                     )}
-//                 </div>
-//             </section>
-//         </main>
-//     );
-// }

@@ -147,3 +147,9 @@ export interface SeoData {
     schema: SeoSchema[];
     title: string;
 }
+
+export interface DefaultMeta {
+    type: string;
+    value: string;
+    content: string;
+}
