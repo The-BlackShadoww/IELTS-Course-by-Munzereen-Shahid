@@ -112,7 +112,7 @@ export default async function Home() {
 
     return (
         <>
-            <Head>
+            {/* <Head>
                 {seo?.schema?.map((item: SeoSchema, index: number) => {
                     if (item.type === "ld-json" && item.meta_value) {
                         return (
@@ -127,9 +127,25 @@ export default async function Home() {
                     }
                     return null;
                 })}
-            </Head>
+            </Head> */}
 
             <main>
+                <>
+                    {seo?.schema?.map((item: SeoSchema, index: number) => {
+                        if (item.type === "ld-json") {
+                            return (
+                                <script
+                                    key={index}
+                                    type="application/ld+json"
+                                    dangerouslySetInnerHTML={{
+                                        __html: item.meta_value,
+                                    }}
+                                />
+                            );
+                        }
+                        return null;
+                    })}
+                </>
                 <section className="">
                     <div className="wrapper relative flex gap-8 border">
                         <div className="max-w-[820px] w-full">
