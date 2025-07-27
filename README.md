@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IELTS Preparation Course by Munzereen Shahid
+
+A modern, production-ready Next.js web application for the IELTS Preparation Course by Munzereen Shahid, powered by 10 Minute School.
+
+## Features
+
+-   **Dynamic Course Content:** Fetches and displays course data, instructor info, exclusive features, and more from the backend.
+-   **SEO Optimized:** Dynamic metadata and Open Graph tags for better search engine visibility.
+-   **Internationalization:** Language support via server-side language detection.
+-   **Responsive Design:** Fully responsive layout for desktop and mobile devices.
+-   **Server-Side Rendering & ISR:** Uses Next.js server-side rendering and Incremental Static Regeneration for fast, up-to-date content.
+-   **Component-Based Architecture:** Clean, reusable React components for each section (CourseLayout, Instructor, SideBar, etc.).
+-   **Schema Markup:** Injects structured data for enhanced SEO.
+-   **Checklist & CTA:** Interactive sidebar with course checklist and call-to-action.
+-   **Media Integration:** Course media (images, videos) displayed with optimized loading.
+-   **Docker Support:** Ready-to-use Dockerfile for containerized deployments.
+
+## Main Packages Used
+
+-   **next**: React framework for server-side rendering and static site generation.
+-   **react**: UI library for building user interfaces.
+-   **typescript**: Type-safe development for better code quality.
+-   **classnames**: Utility for conditionally joining classNames.
+-   **eslint, prettier**: Code linting and formatting.
+-   **tailwindcss**: Utility-first CSS framework for rapid UI development.
+-   **postcss, autoprefixer**: CSS processing tools.
+-   **@types/\***: TypeScript type definitions for various packages.
+
+> _Check your `package.json` for the full list of dependencies and their versions._
+
+## Project Structure
+
+```
+├── app/
+│   └── page.tsx                # Main Next.js page
+├── components/
+│   └── sections/
+│       └── home/
+│           ├── CourseLayout.tsx
+│           ├── LearningFromCourse.tsx
+│           ├── ExclusiveFeatures.tsx
+│           ├── CourseDetails.tsx
+│           ├── Instructor.tsx
+│           ├── CourseMedia.tsx
+│           ├── SideBar.tsx
+│           └── CourseChecklist.tsx
+├── lib/
+│   ├── getCourseData.ts
+│   └── language.ts
+├── types/
+│   └── index.ts
+├── public/
+├── styles/
+├── next.config.js
+├── Dockerfile
+└── README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+### 3. Production Build
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Build and run the app in a container:
 
-## Deploy on Vercel
+```sh
+docker build -t ielts-course .
+docker run -p 3000:3000 ielts-course
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   Configure any required environment variables in a `.env.local` file.
+-   Example:
+    ```
+    NEXT_PUBLIC_API_URL=https://api.10minuteschool.com
+    ```
+
+## Deployment
+
+-   Supports deployment to Vercel, Docker, or any Node.js hosting platform.
+-   Make sure to configure `next.config.js` for external image domains as needed.
+
+
