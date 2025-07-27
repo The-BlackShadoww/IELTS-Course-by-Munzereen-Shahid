@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer
             id="page-footer"
-            className="w-full text-center center h-36 mt-10 bg-[#111827] text-white/60"
+            className="w-full text-center center h-20 mt-10 bg-[#111827] text-white/60"
         >
             &copy;
             <Link

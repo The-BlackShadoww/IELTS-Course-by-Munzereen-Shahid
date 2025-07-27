@@ -129,7 +129,7 @@ export default async function Home() {
                 </>
 
                 {/* Content */}
-                <div className="w-full md:h-[350px] mt-[68px] max-md:py-8 bg-[url('https://cdn.10minuteschool.com/images/ui_%281%29_1716445506383.jpeg')] bg-cover bg-center">
+                <div className="w-full md:h-[350px] mt-[68px] max-md:py-8 bg-gradient-to-br from-[#000d38] via-[#000d38] to-[#002db2]">
                     <div className="wrapper h-full flex flex-col md:flex-row items-center relative text-white">
                         <div className="order-2 md:order-1 md:max-w-[calc(100%-348px)] lg:max-w-[calc(100%-448px)] w-full max-md: mt-4">
                             <h1 className="hero_title">{courseData?.title}</h1>
