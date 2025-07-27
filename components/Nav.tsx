@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Languages } from "lucide-react";
 import { useTransition } from "react";
@@ -13,7 +13,7 @@ interface NavProps {
 
 const Nav = ({ initialLanguage }: NavProps) => {
     const [isPending, startTransition] = useTransition();
-    const [currentLang, setCurrentLang] = React.useState(initialLanguage);
+    const [currentLang, setCurrentLang] = useState(initialLanguage);
 
     const toggleLanguage = () => {
         const newLang = currentLang === "en" ? "bn" : "en";
@@ -25,7 +25,7 @@ const Nav = ({ initialLanguage }: NavProps) => {
     };
 
     return (
-        <nav className="w-full h-full border-b">
+        <nav className="w-full h-auto fixed top-0 left-0 bg-white/50 backdrop-blur-xl z-50 border-b border-black/5">
             <div className="wrapper flex items-center justify-between py-4">
                 <div>
                     <Image

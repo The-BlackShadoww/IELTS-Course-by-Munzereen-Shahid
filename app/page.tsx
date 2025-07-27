@@ -4,7 +4,6 @@ import CourseLayout from "@/components/sections/home/CourseLayout";
 import LearningFromCourse from "@/components/sections/home/LearningFromCourse";
 import ExclusiveFeatures from "@/components/sections/home/ExclusiveFeatures";
 import CourseDetails from "@/components/sections/home/CourseDetails";
-import SideBar from "@/components/sections/home/SideBar";
 import Instructor from "@/components/sections/home/Instructor";
 import {
     CourseData,
@@ -17,6 +16,9 @@ import {
     SeoSchema,
 } from "@/types";
 import type { Metadata } from "next";
+import CourseMedia from "@/components/sections/home/CourseMedia";
+import SideBar from "@/components/sections/home/SideBar";
+import CourseChecklist from "@/components/sections/home/CourseChecklist";
 
 //! ISR - Time based
 export const revalidate = 3600;
@@ -79,7 +81,6 @@ export default async function Home() {
     const language = await getServerLanguage();
     const response = await getCourseData(language);
     const courseData = response?.data;
-    console.log(courseData.seo);
 
     const instructor = courseData?.sections?.find(
         (section: CourseData) => section.type === "instructors"
@@ -128,27 +129,19 @@ export default async function Home() {
                 </>
 
                 {/* Content */}
-                <section className="">
-                    <div className="wrapper relative flex gap-8 border">
-                        <div className="max-w-[820px] w-full">
-                            <h1>{courseData?.title}</h1>
-                            <div
-                                className="tenms__description"
+                <div className="w-full md:h-[350px] mt-[68px] max-md:py-8 bg-[url('https://cdn.10minuteschool.com/images/ui_%281%29_1716445506383.jpeg')] bg-cover bg-center">
+                    <div className="wrapper h-full flex flex-col md:flex-row items-center relative text-white">
+                        <div className="order-2 md:order-1 md:max-w-[calc(100%-348px)] lg:max-w-[calc(100%-448px)] w-full max-md: mt-4">
+                            <h1 className="hero_title">{courseData?.title}</h1>
+                            <p
+                                className="body_text mt-2 md:mt-4 text-white/70"
                                 dangerouslySetInnerHTML={{
                                     __html: courseData?.description,
                                 }}
                             />
-                            {instructor && <Instructor {...instructor} />}
-                            {courseLayout && <CourseLayout {...courseLayout} />}
-                            {pointers && <LearningFromCourse {...pointers} />}
-                            {exclusiveFeatures && (
-                                <ExclusiveFeatures {...exclusiveFeatures} />
-                            )}
-                            {courseDetails && (
-                                <CourseDetails {...courseDetails} />
-                            )}
                         </div>
 
+                        {/* side bar */}
                         {media && cta && checklist.length > 0 && (
                             <SideBar
                                 media={media}
@@ -156,8 +149,27 @@ export default async function Home() {
                                 checklist={checklist}
                             />
                         )}
+
+                        <div className="md:hidden block w-full order-1 md:order-2">
+                            <CourseMedia media={media} />
+                        </div>
                     </div>
+                </div>
+                <section className="md:hidden block px-5">
+                    <CourseChecklist cta={cta} checklist={checklist} />
                 </section>
+                <div className="wrapper flex flex-col ">
+                    {/* course details */}
+                    <div className="md:max-w-[calc(100%-348px)] lg:max-w-[calc(100%-448px)] w-full">
+                        {instructor && <Instructor {...instructor} />}
+                        {courseLayout && <CourseLayout {...courseLayout} />}
+                        {pointers && <LearningFromCourse {...pointers} />}
+                        {exclusiveFeatures && (
+                            <ExclusiveFeatures {...exclusiveFeatures} />
+                        )}
+                        {courseDetails && <CourseDetails {...courseDetails} />}
+                    </div>
+                </div>
             </main>
         </>
     );

@@ -1,13 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionInstructor } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 const Instructor = (instructor: SectionInstructor) => {
     return (
-        <div>
-            <h1> {instructor?.name || "Instructor"}</h1>
+        <section>
+            <h1 className="section_title">
+                {instructor?.name || "Instructor"}
+            </h1>
             <Card className="">
-                <CardContent className="flex items-center gap-4 mt-8">
+                <CardContent className="flex flex-col sm:flex-row items-center gap-4 max-sm:text-center">
                     <div>
                         <Image
                             src={instructor?.values[0].image}
@@ -18,9 +21,17 @@ const Instructor = (instructor: SectionInstructor) => {
                         />
                     </div>
                     <div>
-                        <h4> {instructor.values[0].name}</h4>
-                        <div
-                            className="tenms__description"
+                        <Link
+                            href={
+                                "https://10minuteschool.com/en/skills/instructors/munzereen-shahid/"
+                            }
+                            target="_blank"
+                            className="text-lg font-medium hover:underline"
+                        >
+                            {instructor.values[0].name}
+                        </Link>
+                        <p
+                            className="text-sm font-medium text-[#111827]"
                             dangerouslySetInnerHTML={{
                                 __html: instructor.values[0].description,
                             }}
@@ -28,7 +39,7 @@ const Instructor = (instructor: SectionInstructor) => {
                     </div>
                 </CardContent>
             </Card>
-        </div>
+        </section>
     );
 };
 
