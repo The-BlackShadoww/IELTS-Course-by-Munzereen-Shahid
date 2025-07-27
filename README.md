@@ -11,8 +11,6 @@ A modern, production-ready Next.js web application for the IELTS Preparation Cou
 -   **Server-Side Rendering & ISR:** Uses Next.js server-side rendering and Incremental Static Regeneration for fast, up-to-date content.
 -   **Component-Based Architecture:** Clean, reusable React components for each section (CourseLayout, Instructor, SideBar, etc.).
 -   **Schema Markup:** Injects structured data for enhanced SEO.
--   **Checklist & CTA:** Interactive sidebar with course checklist and call-to-action.
--   **Media Integration:** Course media (images, videos) displayed with optimized loading.
 -   **Docker Support:** Ready-to-use Dockerfile for containerized deployments.
 
 ## Main Packages Used
@@ -20,11 +18,9 @@ A modern, production-ready Next.js web application for the IELTS Preparation Cou
 -   **next**: React framework for server-side rendering and static site generation.
 -   **react**: UI library for building user interfaces.
 -   **typescript**: Type-safe development for better code quality.
--   **classnames**: Utility for conditionally joining classNames.
--   **eslint, prettier**: Code linting and formatting.
 -   **tailwindcss**: Utility-first CSS framework for rapid UI development.
--   **postcss, autoprefixer**: CSS processing tools.
--   **@types/\***: TypeScript type definitions for various packages.
+-   **motion**: Animations for better interactivity.
+-   **shadcn UI Component**: A set of beautifully designed components that you can customize, extend, and build on.
 
 > _Check your `package.json` for the full list of dependencies and their versions._
 
@@ -32,18 +28,22 @@ A modern, production-ready Next.js web application for the IELTS Preparation Cou
 
 ```
 ├── app/
-│   └── page.tsx                # Main Next.js page
+│   ├── page.tsx                # Main Next.js page
+│   ├── layout.tsx  
+│   └── actions
+│        └── language.ts
 ├── components/
-│   └── sections/
-│       └── home/
-│           ├── CourseLayout.tsx
-│           ├── LearningFromCourse.tsx
-│           ├── ExclusiveFeatures.tsx
-│           ├── CourseDetails.tsx
-│           ├── Instructor.tsx
-│           ├── CourseMedia.tsx
-│           ├── SideBar.tsx
-│           └── CourseChecklist.tsx
+│   ├── sections/
+│   │    └── home/
+│   │        ├── CourseLayout.tsx
+│   │        ├── LearningFromCourse.tsx
+│   │        ├── ExclusiveFeatures.tsx
+│   │        ├── CourseDetails.tsx
+│   │        ├── Instructor.tsx
+│   │        ├── CourseMedia.tsx
+│   │        ├── SideBar.tsx
+│   │        └── CourseChecklist.tsx
+│   └── ui/
 ├── lib/
 │   ├── getCourseData.ts
 │   └── language.ts
@@ -100,5 +100,3 @@ docker run -p 3000:3000 ielts-course
 
 -   Supports deployment to Vercel, Docker, or any Node.js hosting platform.
 -   Make sure to configure `next.config.js` for external image domains as needed.
-
-
