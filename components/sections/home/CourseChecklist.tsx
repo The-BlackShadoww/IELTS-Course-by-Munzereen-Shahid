@@ -15,7 +15,7 @@ const CourseChecklist = ({
             <h2 className="inline-block text-2xl font-semibold">৳ 1000</h2>
             {/* CTA */}
             <div>
-                <Button className="w-full bg-app-green hover:bg-app-dark-green cursor-pointer rounded-sm">
+                <Button className="w-full py-6 text-lg bg-app-green hover:bg-app-dark-green cursor-pointer rounded-sm">
                     {cta?.name || "Enroll Now"}
                 </Button>
             </div>

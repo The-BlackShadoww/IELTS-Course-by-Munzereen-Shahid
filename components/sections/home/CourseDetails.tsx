@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { CourseDetailsType, SectionCourseDetails } from "@/types";
+import DOMPurify from "isomorphic-dompurify";
 
 const CourseDetails = (courseDetails: SectionCourseDetails) => {
     return (
@@ -24,18 +25,22 @@ const CourseDetails = (courseDetails: SectionCourseDetails) => {
                                     className="border-dashed"
                                 >
                                     <AccordionTrigger className="cursor-pointer">
-                                        <p
+                                        <div
                                             dangerouslySetInnerHTML={{
-                                                __html: courseDetail.title,
+                                                __html: DOMPurify.sanitize(
+                                                    courseDetail.title
+                                                ),
                                             }}
                                             className="text-base/[24px] font-medium"
-                                        ></p>
+                                        ></div>
                                     </AccordionTrigger>
                                     <AccordionContent>
                                         <div
                                             className="prose prose-ul:pl-4 text-base/[28px] text-[#4B5563] "
                                             dangerouslySetInnerHTML={{
-                                                __html: courseDetail.description,
+                                                __html: DOMPurify.sanitize(
+                                                    courseDetail.description
+                                                ),
                                             }}
                                         />
                                     </AccordionContent>

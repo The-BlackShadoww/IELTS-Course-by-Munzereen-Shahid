@@ -19,6 +19,7 @@ import type { Metadata } from "next";
 import CourseMedia from "@/components/sections/home/CourseMedia";
 import SideBar from "@/components/sections/home/SideBar";
 import CourseChecklist from "@/components/sections/home/CourseChecklist";
+import DOMPurify from "isomorphic-dompurify";
 
 //! ISR - Time based
 export const revalidate = 3600;
@@ -119,7 +120,9 @@ export default async function Home() {
                                     key={index}
                                     type="application/ld+json"
                                     dangerouslySetInnerHTML={{
-                                        __html: item.meta_value,
+                                        __html: DOMPurify.sanitize(
+                                            item.meta_value
+                                        ),
                                     }}
                                 />
                             );
@@ -131,12 +134,14 @@ export default async function Home() {
                 {/* Content */}
                 <div className="w-full md:h-[350px] mt-[68px] max-md:py-8 bg-gradient-to-br from-[#000d38] via-[#000d38] to-[#002db2]">
                     <div className="wrapper h-full flex flex-col md:flex-row items-center relative text-white">
-                        <div className="order-2 md:order-1 md:max-w-[calc(100%-348px)] lg:max-w-[calc(100%-448px)] w-full max-md: mt-4">
+                        <div className="order-2 md:order-1 md:max-w-[calc(100%-348px)] lg:max-w-[calc(100%-448px)] w-full mt-4">
                             <h1 className="hero_title">{courseData?.title}</h1>
-                            <p
+                            <div
                                 className="body_text mt-2 md:mt-4 text-white/70"
                                 dangerouslySetInnerHTML={{
-                                    __html: courseData?.description,
+                                    __html: DOMPurify.sanitize(
+                                        courseData?.description || ""
+                                    ),
                                 }}
                             />
                         </div>

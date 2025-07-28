@@ -21,6 +21,7 @@ A modern, production-ready Next.js web application for the IELTS Preparation Cou
 -   **tailwindcss**: Utility-first CSS framework for rapid UI development.
 -   **motion**: Animations for better interactivity.
 -   **shadcn UI Component**: A set of beautifully designed components that you can customize, extend, and build on.
+-   **DOMPurify**: A DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG.
 
 > _Check your `package.json` for the full list of dependencies and their versions._
 
